@@ -2,26 +2,31 @@
 
 DoorPulse is an active early-stage open-source project.
 
-## Proven development flow
+## Platform Status
+
+- ✅ Windows — available and working
+- 🚧 Linux — planned / in development
+
+## Proven Development Flow
 
 The following has been successfully tested during development:
 
-- fresh Windows installation
+- Fresh Windows installation
 - Ring authentication
-- camera discovery
-- true Ring push notification
+- Camera discovery
+- True Ring push notifications
 - Live View recording
 - MP4 validation
 - JPG thumbnail creation
 - FTP upload
-- backup event polling
-- automatic recorder recovery
+- Backup event polling
+- Automatic recorder recovery
 
-## Current focus
+## Current Focus
 
-- hardening fresh-PC installation
-- long-running reliability
-- multi-camera validation
-- local + cloud storage validation
-- release packaging/licensing
-- code signing
+- Linux version development
+- Long-running reliability
+- Multi-camera validation
+- Local + cloud storage validation
+- Release packaging and licensing
+- Code signing
