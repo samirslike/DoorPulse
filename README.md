@@ -33,6 +33,20 @@ Download the installer, double-click it, approve the Windows administrator promp
 - Windows Setup Wizard
 - No command line required for normal users
 
+## Screenshots
+
+### Dashboard
+
+![DoorPulse Dashboard](screenshots/dashboard.jpg)
+
+### Setup Wizard
+
+![DoorPulse Setup Wizard](screenshots/setup-wizard.jpg)
+
+### Videos
+
+![DoorPulse Videos](screenshots/videos.jpg)
+
 ## How It Works
 
 ```text
