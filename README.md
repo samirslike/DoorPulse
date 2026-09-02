@@ -138,3 +138,11 @@ Thank you to the maintainers and contributors of those projects for making appli
 DoorPulse is an unofficial third-party application.
 
 Ring is a trademark of Ring LLC / Amazon. DoorPulse is not affiliated with, sponsored by, endorsed by, or supported by Ring LLC or Amazon.
+
+## ❤️ Support DoorPulse
+
+If DoorPulse is useful to you and you'd like to support continued development, testing, and new features:
+
+[❤️ Sponsor DoorPulse on GitHub](https://github.com/sponsors/samirslike)
+
+Thank you for supporting the project!
