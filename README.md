@@ -39,6 +39,14 @@ Download the installer, double-click it, approve the Windows administrator promp
 - Windows Setup Wizard
 - No command line required for normal users
 
+## Platform Support
+
+| Platform | Status |
+|---|---|
+| Windows | ✅ Available |
+| Linux | 🚧 In development |
+| macOS | Not currently planned |
+
 ## Screenshots
 
 ### Setup Wizard
