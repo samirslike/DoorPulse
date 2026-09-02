@@ -1,0 +1,48 @@
+# Visual Studio / .NET
+.vs/
+bin/
+obj/
+publish/
+release/
+artifacts/
+*.user
+*.suo
+*.pdb
+
+# DoorPulse runtime/customer data
+BundledRuntime/
+runtime/
+recordings/
+cloud-upload-ledger.json
+config.json
+refresh-token.txt
+ftp-password.txt
+*.log
+
+# Generated binaries
+node.exe
+ffmpeg.exe
+ring-runtime.zip
+DoorPulseSetup.exe
+*.msi
+*.nupkg
+
+# Secrets / signing material
+.env
+.env.*
+*.pfx
+*.p12
+*.pem
+*.key
+secrets.json
+
+# Node/npm
+node_modules/
+npm-debug.log*
+
+# OS/editor
+Thumbs.db
+Desktop.ini
+.DS_Store
+.idea/
+.vscode/

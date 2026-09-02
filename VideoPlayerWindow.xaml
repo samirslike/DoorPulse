@@ -1,0 +1,75 @@
+<Window x:Class="DoorPulse.VideoPlayerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DoorPulse Player"
+        Width="1120" Height="760"
+        MinWidth="860" MinHeight="600"
+        Background="#0A0F18"
+        WindowStartupLocation="CenterOwner"
+        Icon="Assets/doorpulse.ico"
+        KeyDown="Window_KeyDown">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- top bar -->
+        <Border Background="#101722" Padding="18,14">
+            <Grid>
+                <StackPanel>
+                    <TextBlock x:Name="TitleText" Text="Camera" Foreground="White" FontSize="18" FontWeight="SemiBold"/>
+                    <TextBlock x:Name="MetaText" Text="Motion • Today" Foreground="#9CA8B7" FontSize="12" Margin="0,4,0,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Style="{StaticResource SecondaryButton}" Click="OpenFolder_Click">Open Folder</Button>
+                    <Button Style="{StaticResource SecondaryButton}" Margin="8,0,0,0" Click="Fullscreen_Click">Fullscreen</Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- video -->
+        <Border Grid.Row="1" Background="Black">
+            <MediaElement x:Name="Player"
+                          LoadedBehavior="Manual"
+                          UnloadedBehavior="Manual"
+                          Stretch="Uniform"
+                          MediaOpened="Player_MediaOpened"
+                          MediaEnded="Player_MediaEnded"/>
+        </Border>
+
+        <!-- controls -->
+        <Border Grid.Row="2" Background="#101722" Padding="18,12">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="PlayPauseButton" Style="{StaticResource PrimaryButton}" Click="PlayPause_Click">Pause</Button>
+
+                <TextBlock x:Name="CurrentTimeText" Grid.Column="1" Text="0:00" Foreground="#D7E0EA" VerticalAlignment="Center" Margin="14,0,10,0"/>
+
+                <Slider x:Name="SeekSlider"
+                        Grid.Column="2"
+                        Minimum="0"
+                        Maximum="1"
+                        ValueChanged="SeekSlider_ValueChanged"
+                        PreviewMouseLeftButtonDown="SeekSlider_PreviewMouseLeftButtonDown"
+                        PreviewMouseLeftButtonUp="SeekSlider_PreviewMouseLeftButtonUp"
+                        VerticalAlignment="Center"/>
+
+                <StackPanel Grid.Column="3" Orientation="Horizontal" Margin="14,0,0,0">
+                    <TextBlock x:Name="DurationText" Text="0:00" Foreground="#D7E0EA" VerticalAlignment="Center" Margin="0,0,14,0"/>
+                    <TextBlock Text="Vol" Foreground="#9CA8B7" VerticalAlignment="Center"/>
+                    <Slider x:Name="VolumeSlider" Width="90" Minimum="0" Maximum="1" Value="0.8"
+                            ValueChanged="VolumeSlider_ValueChanged" Margin="8,0,0,0"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Assets\doorpulse.ico</ApplicationIcon>
+    <AssemblyName>DoorPulse</AssemblyName>
+    <RootNamespace>DoorPulse</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\doorpulse.png" />
+    <Resource Include="Assets\doorpulse.ico" />
+    <EmbeddedResource Include="Engine\recorder.mjs" LogicalName="DoorPulse.Engine.recorder.mjs" />
+    <EmbeddedResource Include="Engine\ring-auth-helper.mjs" LogicalName="DoorPulse.Engine.ring-auth-helper.mjs" />
+    <EmbeddedResource Include="Engine\ring-cameras-helper.mjs" LogicalName="DoorPulse.Engine.ring-cameras-helper.mjs" />
+    <EmbeddedResource Include="Engine\ring-push-status-helper.mjs" LogicalName="DoorPulse.Engine.ring-push-status-helper.mjs" />
+    <EmbeddedResource Include="Engine\ring-push-bootstrap.mjs" LogicalName="DoorPulse.Engine.ring-push-bootstrap.mjs" />
+    <EmbeddedResource Include="BundledRuntime\node.exe" LogicalName="DoorPulse.Runtime.node.exe" Condition="Exists('BundledRuntime\node.exe')" />
+    <EmbeddedResource Include="BundledRuntime\ffmpeg.exe" LogicalName="DoorPulse.Runtime.ffmpeg.exe" Condition="Exists('BundledRuntime\ffmpeg.exe')" />
+    <EmbeddedResource Include="BundledRuntime\ring-runtime.zip" LogicalName="DoorPulse.Runtime.ring-runtime.zip" Condition="Exists('BundledRuntime\ring-runtime.zip')" />
+  </ItemGroup>
+
+</Project>

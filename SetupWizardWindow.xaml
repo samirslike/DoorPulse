@@ -1,0 +1,436 @@
+<Window x:Class="DoorPulse.SetupWizardWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DoorPulse Setup"
+        Width="940" Height="690"
+        MinWidth="900" MinHeight="650"
+        WindowStartupLocation="CenterScreen"
+        Background="#F5F7FA"
+        Icon="Assets/doorpulse.ico"
+        ResizeMode="CanResize">
+
+    <Window.Resources>
+        <Style x:Key="WizardCard" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="18"/>
+            <Setter Property="Padding" Value="28"/>
+            <Setter Property="BorderBrush" Value="#E5EAF0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style x:Key="FieldLabel" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#6B7280"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Margin" Value="0,0,0,6"/>
+        </Style>
+
+        <Style x:Key="ChoiceCard" TargetType="RadioButton">
+            <Setter Property="Margin" Value="0,0,12,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border x:Name="Box" Padding="18" CornerRadius="14" Background="White" BorderBrush="#DDE4EC" BorderThickness="1">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Box" Property="BorderBrush" Value="#0B74D1"/>
+                                <Setter TargetName="Box" Property="Background" Value="#EEF7FF"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Box" Property="BorderBrush" Value="#83BCE8"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="82"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="78"/>
+        </Grid.RowDefinitions>
+
+        <!-- header -->
+        <Border Background="White" BorderBrush="#E5EAF0" BorderThickness="0,0,0,1">
+            <Grid Margin="26,0">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Border Width="46" Height="46" CornerRadius="13" Background="#0B74D1">
+                        <Image Source="Assets/doorpulse.png"/>
+                    </Border>
+                    <StackPanel Margin="12,0,0,0" VerticalAlignment="Center">
+                        <TextBlock Text="DoorPulse Setup" FontSize="21" FontWeight="Bold" Foreground="#172033"/>
+                        <TextBlock x:Name="HeaderSubtitle" Text="Let's get your recorder ready." FontSize="12" Foreground="#6B7280"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <TextBlock x:Name="StepLabel" Text="Step 1 of 7" FontWeight="SemiBold" Foreground="#0B74D1" HorizontalAlignment="Right"/>
+                    <TextBlock x:Name="ResumeLabel" Text="Your progress is saved automatically." FontSize="11" Foreground="#6B7280" Margin="0,3,0,0"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- content -->
+        <Grid Grid.Row="1" Margin="34,28">
+            <!-- Welcome -->
+            <Border x:Name="WelcomeStep" Style="{StaticResource WizardCard}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.2*"/>
+                        <ColumnDefinition Width="0.8*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel VerticalAlignment="Center" Margin="8,0,36,0">
+                        <TextBlock Text="Your door camera, your recordings." FontSize="34" FontWeight="Bold" Foreground="#172033" TextWrapping="Wrap"/>
+                        <TextBlock Margin="0,16,0,0" FontSize="15" Foreground="#5B6676" TextWrapping="Wrap"
+                                   Text="DoorPulse will connect to your Ring account, configure recording, set up storage, and run automatically in the background."/>
+                        <Border Margin="0,24,0,0" Background="#EEF7FF" CornerRadius="12" Padding="16">
+                            <TextBlock Foreground="#285779" TextWrapping="Wrap"
+                                       Text="No command prompt. No manual paths. DoorPulse remembers where you stop and resumes setup next time."/>
+                        </Border>
+                    </StackPanel>
+
+                    <Border Grid.Column="1" Background="#F1F7FC" CornerRadius="22" Padding="28">
+                        <StackPanel VerticalAlignment="Center">
+                            <Image Source="Assets/doorpulse.png" Width="130" Height="130" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Setup takes about 3–5 minutes" Margin="0,22,0,0" FontWeight="SemiBold" FontSize="16" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Ring • Recording • Storage • Startup" Margin="0,8,0,0" Foreground="#6B7280" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <!-- Runtime -->
+            <Border x:Name="RuntimeStep" Style="{StaticResource WizardCard}" Visibility="Collapsed">
+                <StackPanel>
+                    <TextBlock Text="System components" FontSize="28" FontWeight="Bold" Foreground="#172033"/>
+                    <TextBlock Margin="0,8,0,22" Foreground="#6B7280" FontSize="14"
+                               Text="DoorPulse includes everything needed to record video. Components are prepared automatically — no paths or command prompt required."/>
+
+                    <Border Background="#F8FAFC" CornerRadius="14" Padding="18">
+                        <StackPanel>
+                            <TextBlock x:Name="NodeStatus" Text="○ Node.js runtime — Checking..." FontSize="15" Margin="0,0,0,14"/>
+                            <TextBlock x:Name="FfmpegStatus" Text="○ FFmpeg — Checking..." FontSize="15" Margin="0,0,0,14"/>
+                            <TextBlock x:Name="RingRuntimeStatus" Text="○ Ring connection engine — Checking..." FontSize="15"/>
+                        </StackPanel>
+                    </Border>
+
+                    <TextBlock x:Name="RuntimeMessage" Margin="0,18,0,0" Foreground="#6B7280" TextWrapping="Wrap"/>
+                    <Button x:Name="InstallComponentsButton" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Left" Margin="0,18,0,0"
+                            Click="InstallComponents_Click">Retry Component Preparation</Button>
+                </StackPanel>
+            </Border>
+
+            <!-- Ring -->
+            <Border x:Name="RingStep" Style="{StaticResource WizardCard}" Visibility="Collapsed">
+                <StackPanel>
+                    <TextBlock Text="Connect your Ring account" FontSize="28" FontWeight="Bold" Foreground="#172033"/>
+                    <TextBlock Margin="0,8,0,22" Foreground="#6B7280" FontSize="14" TextWrapping="Wrap"
+                               Text="Sign in once. DoorPulse exchanges your credentials for a refresh token and does not save your Ring password."/>
+
+                    <Grid x:Name="RingCredentialsPanel">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Margin="0,0,12,0">
+                            <TextBlock Text="Ring email" Style="{StaticResource FieldLabel}"/>
+                            <TextBox x:Name="RingEmailBox"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="Ring password" Style="{StaticResource FieldLabel}"/>
+                            <PasswordBox x:Name="RingPasswordBox"/>
+                        </StackPanel>
+
+                        <Button Grid.Row="1" Grid.ColumnSpan="2" Margin="0,18,0,0" HorizontalAlignment="Left"
+                                Style="{StaticResource PrimaryButton}" Click="ConnectRing_Click">Connect Ring Account</Button>
+
+                        <TextBlock x:Name="RingLoginMessage" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,14,0,0"
+                                   Foreground="#6B7280" TextWrapping="Wrap"/>
+                    </Grid>
+
+                    <Border x:Name="TwoFactorPanel" Visibility="Collapsed" Background="#F8FAFC" CornerRadius="14" Padding="18" Margin="0,18,0,0">
+                        <StackPanel>
+                            <TextBlock Text="Verification code" FontWeight="Bold" FontSize="16"/>
+                            <TextBlock x:Name="TwoFactorPrompt" Margin="0,5,0,12" Foreground="#6B7280"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox x:Name="TwoFactorBox" Width="220"/>
+                                <Button Margin="10,0,0,0" Style="{StaticResource PrimaryButton}" Click="Verify2fa_Click">Verify</Button>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <Border x:Name="RingConnectedPanel" Visibility="Collapsed" Background="#E9F8EE" CornerRadius="14" Padding="18" Margin="0,18,0,0">
+                        <TextBlock Text="✓ Ring account connected successfully." Foreground="#16803B" FontSize="15" FontWeight="SemiBold"/>
+                    </Border>
+
+                    <Border x:Name="RingPushPanel"
+                            Visibility="Collapsed"
+                            Background="#F8FAFC"
+                            CornerRadius="14"
+                            BorderBrush="#E5EAF0"
+                            BorderThickness="1"
+                            Padding="18"
+                            Margin="0,12,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel>
+                                <TextBlock Text="Ring Push Service"
+                                           FontSize="15"
+                                           FontWeight="SemiBold"
+                                           Foreground="#172033"/>
+                                <TextBlock x:Name="RingPushStatusText"
+                                           Text="Preparing instant notifications..."
+                                           Margin="0,5,0,0"
+                                           Foreground="#6B7280"
+                                           FontSize="12"
+                                           TextWrapping="Wrap"/>
+                            </StackPanel>
+
+                            <Button x:Name="RetryPushButton"
+                                    Grid.Column="1"
+                                    Visibility="Collapsed"
+                                    Style="{StaticResource SecondaryButton}"
+                                    Margin="14,0,0,0"
+                                    Click="RetryPush_Click">
+                                Retry
+                            </Button>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- Camera -->
+            <Border x:Name="CameraStep" Style="{StaticResource WizardCard}" Visibility="Collapsed">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel>
+                        <TextBlock Text="Choose cameras to monitor" FontSize="28" FontWeight="Bold" Foreground="#172033"/>
+                        <TextBlock Margin="0,8,0,6" Foreground="#6B7280" FontSize="14" TextWrapping="Wrap"
+                                   Text="One DoorPulse installation can monitor one, several, or all cameras on this Ring account."/>
+                        <TextBlock Foreground="#6B7280" FontSize="12" TextWrapping="Wrap"
+                                   Text="Motion and doorbell press can be enabled independently for each selected camera."/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,18,0,14">
+                        <Button Style="{StaticResource SecondaryButton}" Click="SelectAllCameras_Click">Select All</Button>
+                        <Button Style="{StaticResource SecondaryButton}" Margin="8,0,0,0" Click="ClearAllCameras_Click">Clear All</Button>
+                        <Button Style="{StaticResource SecondaryButton}" Margin="8,0,0,0" Click="RefreshCameras_Click">Refresh Cameras</Button>
+                        <TextBlock x:Name="CameraCountText" Margin="16,10,0,0" Foreground="#0B74D1" FontWeight="SemiBold"/>
+                    </StackPanel>
+
+                    <Border Grid.Row="2" Background="#F8FAFC" CornerRadius="14" Padding="10" BorderBrush="#E5EAF0" BorderThickness="1">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <ItemsControl x:Name="CameraList">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="White" CornerRadius="12" BorderBrush="#E5EAF0" BorderThickness="1" Padding="14" Margin="0,0,0,9">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <StackPanel>
+                                                    <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                                              Checked="CameraSelection_Changed"
+                                                              Unchecked="CameraSelection_Changed">
+                                                        <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="SemiBold" Foreground="#172033"/>
+                                                    </CheckBox>
+                                                    <TextBlock Text="{Binding Id, StringFormat=Camera ID: {0}}" Margin="24,4,0,0" Foreground="#8992A3" FontSize="11"/>
+                                                </StackPanel>
+
+                                                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                                                    <CheckBox Content="Motion"
+                                                              IsChecked="{Binding MonitorMotion, Mode=TwoWay}"
+                                                              IsEnabled="{Binding IsSelected}"
+                                                              Margin="0,0,14,0"/>
+                                                    <CheckBox Content="Doorbell press"
+                                                              IsChecked="{Binding MonitorDoorbell, Mode=TwoWay}"
+                                                              IsEnabled="{Binding IsSelected}"/>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Border>
+
+                    <TextBlock x:Name="CameraMessage" Grid.Row="3" Margin="0,12,0,0" Foreground="#6B7280" TextWrapping="Wrap"/>
+                </Grid>
+            </Border>
+
+            <!-- Recording -->
+            <Border x:Name="RecordingStep" Style="{StaticResource WizardCard}" Visibility="Collapsed">
+                <StackPanel>
+                    <TextBlock Text="Recording length" FontSize="28" FontWeight="Bold" Foreground="#172033"/>
+                    <TextBlock Margin="0,8,0,24" Foreground="#6B7280" FontSize="14"
+                               Text="Choose how long DoorPulse records after a motion or doorbell event."/>
+
+                    <UniformGrid Columns="3">
+                        <RadioButton x:Name="PresetShort" GroupName="Preset" Style="{StaticResource ChoiceCard}">
+                            <StackPanel>
+                                <TextBlock Text="15 seconds" FontSize="20" FontWeight="Bold"/>
+                                <TextBlock Text="Short" Margin="0,5,0,0" Foreground="#6B7280"/>
+                                <TextBlock Text="Lower storage usage" Margin="0,12,0,0" Foreground="#6B7280"/>
+                            </StackPanel>
+                        </RadioButton>
+                        <RadioButton x:Name="PresetNormal" GroupName="Preset" Style="{StaticResource ChoiceCard}" IsChecked="True">
+                            <StackPanel>
+                                <TextBlock Text="25 seconds" FontSize="20" FontWeight="Bold"/>
+                                <TextBlock Text="Recommended" Margin="0,5,0,0" Foreground="#0B74D1" FontWeight="SemiBold"/>
+                                <TextBlock Text="Balanced capture" Margin="0,12,0,0" Foreground="#6B7280"/>
+                            </StackPanel>
+                        </RadioButton>
+                        <RadioButton x:Name="PresetLong" GroupName="Preset" Style="{StaticResource ChoiceCard}" Margin="0">
+                            <StackPanel>
+                                <TextBlock Text="45 seconds" FontSize="20" FontWeight="Bold"/>
+                                <TextBlock Text="Long" Margin="0,5,0,0" Foreground="#6B7280"/>
+                                <TextBlock Text="More event context" Margin="0,12,0,0" Foreground="#6B7280"/>
+                            </StackPanel>
+                        </RadioButton>
+                    </UniformGrid>
+                </StackPanel>
+            </Border>
+
+            <!-- Storage -->
+            <Border x:Name="StorageStep" Style="{StaticResource WizardCard}" Visibility="Collapsed">
+                <StackPanel>
+                    <TextBlock Text="Where should recordings be stored?" FontSize="28" FontWeight="Bold" Foreground="#172033"/>
+                    <TextBlock Margin="0,8,0,22" Foreground="#6B7280" FontSize="14"
+                               Text="You can keep recordings on this PC or upload them to your own FTP/cloud storage."/>
+
+                    <UniformGrid Columns="3">
+                        <RadioButton x:Name="CloudStorageChoice" GroupName="Storage" Style="{StaticResource ChoiceCard}"
+                                     Checked="StorageChoice_Changed" IsChecked="True">
+                            <StackPanel>
+                                <TextBlock Text="☁ Cloud" FontSize="20" FontWeight="Bold"/>
+                                <TextBlock Text="Upload automatically. Local files are temporary and removed after successful upload." TextWrapping="Wrap" Margin="0,8,0,0" Foreground="#6B7280"/>
+                            </StackPanel>
+                        </RadioButton>
+
+                        <RadioButton x:Name="LocalStorageChoice" GroupName="Storage" Style="{StaticResource ChoiceCard}"
+                                     Checked="StorageChoice_Changed">
+                            <StackPanel>
+                                <TextBlock Text="▣ Local PC" FontSize="20" FontWeight="Bold"/>
+                                <TextBlock Text="Keep recordings on this computer and browse them inside DoorPulse Videos." TextWrapping="Wrap" Margin="0,8,0,0" Foreground="#6B7280"/>
+                            </StackPanel>
+                        </RadioButton>
+
+                        <RadioButton x:Name="BothStorageChoice" GroupName="Storage" Style="{StaticResource ChoiceCard}" Margin="0"
+                                     Checked="StorageChoice_Changed">
+                            <StackPanel>
+                                <TextBlock Text="☁ + ▣ Both" FontSize="20" FontWeight="Bold"/>
+                                <TextBlock Text="Keep a local video library and upload a second copy to your cloud / FTP storage." TextWrapping="Wrap" Margin="0,8,0,0" Foreground="#0B74D1"/>
+                            </StackPanel>
+                        </RadioButton>
+                    </UniformGrid>
+
+                    <Grid x:Name="CloudPanel" Margin="0,24,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Margin="0,0,12,0">
+                            <TextBlock Text="FTP host / IP" Style="{StaticResource FieldLabel}"/>
+                            <TextBox x:Name="FtpHostBox"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="FTP username" Style="{StaticResource FieldLabel}"/>
+                            <TextBox x:Name="FtpUserBox"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Margin="0,14,12,0">
+                            <TextBlock Text="FTP password" Style="{StaticResource FieldLabel}"/>
+                            <PasswordBox x:Name="FtpPasswordBox"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,14,0,0">
+                            <TextBlock Text="Remote recordings folder" Style="{StaticResource FieldLabel}"/>
+                            <TextBox x:Name="FtpRemoteBox"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,16,0,0">
+                            <Button Style="{StaticResource SecondaryButton}" Click="TestFtp_Click">Test FTP Connection</Button>
+                            <TextBlock x:Name="FtpTestMessage" Margin="14,10,0,0" Foreground="#6B7280"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid x:Name="LocalPanel" Visibility="Collapsed" Margin="0,24,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="220"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Margin="0,0,12,0">
+                            <TextBlock Text="Recording folder" Style="{StaticResource FieldLabel}"/>
+                            <TextBox x:Name="LocalFolderBox"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="Keep recordings for" Style="{StaticResource FieldLabel}"/>
+                            <ComboBox x:Name="RetentionBox">
+                                <ComboBoxItem Content="24 hours" Tag="24"/>
+                                <ComboBoxItem Content="3 days" Tag="72"/>
+                                <ComboBoxItem Content="7 days" Tag="168"/>
+                                <ComboBoxItem Content="30 days" Tag="720"/>
+                            </ComboBox>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- Finish -->
+            <Border x:Name="FinishStep" Style="{StaticResource WizardCard}" Visibility="Collapsed">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="620">
+                    <Border Width="86" Height="86" CornerRadius="43" Background="#E9F8EE">
+                        <TextBlock Text="✓" Foreground="#16803B" FontSize="46" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Text="DoorPulse is ready to finish setup" FontSize="28" FontWeight="Bold" Foreground="#172033" HorizontalAlignment="Center" Margin="0,20,0,0"/>
+                    <TextBlock x:Name="FinishSummary" TextAlignment="Center" TextWrapping="Wrap" Foreground="#6B7280" FontSize="14" Margin="0,12,0,0"/>
+                    <CheckBox x:Name="StartWithWindowsBox" IsChecked="True" Content="Start DoorPulse automatically with Windows" Margin="0,22,0,0" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="FinishMessage" TextAlignment="Center" TextWrapping="Wrap" Foreground="#6B7280" Margin="0,16,0,0"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- footer -->
+        <Border Grid.Row="2" Background="White" BorderBrush="#E5EAF0" BorderThickness="0,1,0,0">
+            <Grid Margin="26,0">
+                <Button x:Name="BackButton" Style="{StaticResource SecondaryButton}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                        Click="Back_Click">Back</Button>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Button x:Name="NextButton" Style="{StaticResource PrimaryButton}" Click="Next_Click">Next</Button>
+                    <Button x:Name="FinishButton" Style="{StaticResource PrimaryButton}" Visibility="Collapsed" Click="Finish_Click">Finish Setup &amp; Start DoorPulse</Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
