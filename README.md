@@ -1,3 +1,9 @@
+## Open Source
+
+DoorPulse is open source and released under the MIT License.
+
+You can download the ready-to-use Windows installer, review the source code, report issues, or contribute improvements directly through this repository.
+
 # DoorPulse
 
 **Windows recorder and video manager for Ring cameras**
@@ -46,6 +52,20 @@ Download the installer, double-click it, approve the Windows administrator promp
 ### Videos
 
 <img src="screenshots/videos.jpg" alt="DoorPulse Videos" width="100%">
+
+## Build from Source
+
+Requirements:
+
+- Windows 10/11 or Windows Server
+- .NET 8 SDK
+- Node.js
+- FFmpeg
+
+Open `DoorPulse.sln` in Visual Studio 2022 or build with:
+
+```powershell
+dotnet build DoorPulse.sln
 
 ## How It Works
 
