@@ -35,17 +35,17 @@ Download the installer, double-click it, approve the Windows administrator promp
 
 ## Screenshots
 
-### Dashboard
-
-![DoorPulse Dashboard](screenshots/dashboard.jpg)
-
 ### Setup Wizard
 
-![DoorPulse Setup Wizard](screenshots/setup-wizard.jpg)
+<img src="screenshots/setup-wizard.jpg" alt="DoorPulse Setup Wizard" width="100%">
+
+### Dashboard
+
+<img src="screenshots/dashboard.jpg" alt="DoorPulse Dashboard" width="100%">
 
 ### Videos
 
-![DoorPulse Videos](screenshots/videos.jpg)
+<img src="screenshots/videos.jpg" alt="DoorPulse Videos" width="100%">
 
 ## How It Works
 
