@@ -44,8 +44,11 @@ Download the installer, double-click it, approve the Windows administrator promp
 | Platform | Status |
 |---|---|
 | Windows | ✅ Available |
-| Linux | 🚧 In development |
-| macOS | Not currently planned |
+| Linux | 🚧 Preview / in development |
+
+The Windows installer is available from **Releases**.
+
+The Linux source is available in [`linux/`](linux/). Linux push-first recording, local/cloud storage, and the Avalonia GUI have been successfully tested under Ubuntu in WSL2. A packaged Linux release is still in development.
 
 ## Screenshots
 
