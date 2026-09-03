@@ -1,0 +1,17 @@
+{
+  "name": "doorpulse-linux-engine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "DoorPulse Linux Phase 1 recording engine test",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "ring-client-api": "14.3.0",
+    "@eneris/push-receiver": "4.3.1"
+  },
+  "overrides": {
+    "@eneris/push-receiver": "4.3.1"
+  }
+}

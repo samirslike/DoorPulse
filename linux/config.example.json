@@ -1,0 +1,20 @@
+{
+  "storageMode": "local",
+  "recordingDirectory": "__HOME__/Videos/DoorPulse",
+  "ffmpegPath": "/usr/bin/ffmpeg",
+  "curlPath": "/usr/bin/curl",
+  "ringEmail": "",
+  "cameras": [],
+  "cameraName": "",
+  "cameraId": "",
+  "recordingPreset": "normal",
+  "cooldownSeconds": 15,
+  "backupPollSeconds": 60,
+  "retentionHours": 24,
+  "thumbnailSecond": 1,
+  "ftpHost": "",
+  "ftpUsername": "",
+  "ftpRemotePath": "",
+  "viewerUrl": "",
+  "autoStart": true
+}

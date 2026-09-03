@@ -1,0 +1,24 @@
+# Runtime/generated data
+node_modules/
+bin/
+obj/
+publish/
+*.log
+
+# DoorPulse user data / credentials
+config.json
+refresh-token.txt
+ftp-password.txt
+cloud-upload-ledger.json
+
+# Recordings
+recordings/
+Videos/
+*.mp4
+*.jpg
+*.jpeg
+
+# OS/editor
+.DS_Store
+.vscode/
+.idea/
