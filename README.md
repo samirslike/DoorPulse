@@ -14,10 +14,10 @@ You can download the ready-to-use Windows installer, review the source code, rep
 
 ## Platform Support
 
-| Platform | Status |
-|---|---|
-| Windows | ✅ Available |
-| Linux | 🚧 Preview / in development |
+| Platform | Status | Download |
+|---|---|---|
+| Windows | ✅ Available | [Download DoorPulseSetup.exe](https://github.com/samirslike/DoorPulse/releases/latest/download/DoorPulseSetup.exe) |
+| Linux | 🚧 Preview / in development | [View Linux source](https://github.com/samirslike/DoorPulse/tree/main/linux) |
 
 The Windows installer is available from **Releases**.
 
