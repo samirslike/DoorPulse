@@ -1,16 +1,29 @@
+# DoorPulse
+
+**Open-source recorder and video manager for Ring cameras**
+
+DoorPulse automatically records Ring motion and doorbell events, creates video thumbnails, and can save recordings locally, in cloud storage, or both.
+
+> DoorPulse is an independent project and is not affiliated with, endorsed by, or supported by Ring LLC or Amazon.
+
 ## Open Source
 
 DoorPulse is open source and released under the MIT License.
 
 You can download the ready-to-use Windows installer, review the source code, report issues, or contribute improvements directly through this repository.
 
-# DoorPulse
+## Platform Support
 
-**Windows recorder and video manager for Ring cameras**
+| Platform | Status |
+|---|---|
+| Windows | ✅ Available |
+| Linux | 🚧 Preview / in development |
 
-DoorPulse is a Windows application that can automatically record Ring motion and doorbell events, create video thumbnails, and save recordings locally, in cloud storage, or both.
+The Windows installer is available from **Releases**.
 
-> DoorPulse is an independent project and is not affiliated with, endorsed by, or supported by Ring LLC or Amazon.
+The Linux source is available in [`linux/`](linux/). Linux push-first recording, local/cloud storage, systemd recovery, and the Avalonia GUI have been successfully tested under Ubuntu in WSL2.
+
+A packaged Linux release is still in development.
 
 ## Download
 
@@ -33,22 +46,30 @@ Download the installer, double-click it, approve the Windows administrator promp
 - Cloud storage
 - Local + Cloud storage
 - Built-in Videos library
+- Automatic recorder recovery
+- Ring authentication and 2FA
+- Camera discovery
+
+### Windows
+
 - Fullscreen video player
-- Automatic recorder restart
-- Background watchdog recovery
 - Windows Setup Wizard
+- Background watchdog recovery
 - No command line required for normal users
 
-## Platform Support
+### Linux Preview
 
-| Platform | Status |
-|---|---|
-| Windows | ✅ Available |
-| Linux | 🚧 Preview / in development |
-
-The Windows installer is available from **Releases**.
-
-The Linux source is available in [`linux/`](linux/). Linux push-first recording, local/cloud storage, and the Avalonia GUI have been successfully tested under Ubuntu in WSL2. A packaged Linux release is still in development.
+- Avalonia desktop GUI
+- Dashboard
+- Videos library
+- Settings
+- Activity Logs
+- Diagnostics
+- Local / Cloud / Both storage
+- FTP cloud configuration
+- Cloud connection testing
+- systemd automatic recovery
+- WSL2 / WSLg testing support
 
 ## Screenshots
 
@@ -66,7 +87,7 @@ The Linux source is available in [`linux/`](linux/). Linux push-first recording,
 
 ## Build from Source
 
-Requirements:
+### Windows Requirements
 
 - Windows 10/11 or Windows Server
 - .NET 8 SDK
@@ -77,6 +98,24 @@ Open `DoorPulse.sln` in Visual Studio 2022 or build with:
 
 ```powershell
 dotnet build DoorPulse.sln
+```
+
+### Linux
+
+The Linux source and setup instructions are available in:
+
+[`linux/`](linux/)
+
+The Linux version currently uses:
+
+- Ubuntu / Debian Linux
+- Node.js 20+
+- FFmpeg
+- curl
+- .NET 10 SDK
+- Avalonia UI
+
+See [`linux/README.md`](linux/README.md) for installation and testing instructions.
 
 ## How It Works
 
@@ -98,7 +137,7 @@ DoorPulse uses push notifications as the primary trigger.
 
 A periodic Ring event-history check is also used as a backup in case a push notification is missed.
 
-## Installation
+## Windows Installation
 
 1. Download `DoorPulseSetup.exe`
 2. Double-click the installer
@@ -116,7 +155,7 @@ DoorPulse then runs automatically in the background.
 
 ### Local
 
-Recordings remain on the Windows PC and are available from the DoorPulse **Videos** menu.
+Recordings remain on the computer and are available from the DoorPulse **Videos** menu.
 
 ### Cloud
 
@@ -130,7 +169,13 @@ DoorPulse keeps a local copy and uploads another copy to remote storage.
 
 DoorPulse is designed for continuous recording.
 
+### Windows
+
 If the background recorder stops unexpectedly, DoorPulse uses automatic restart settings and a watchdog to bring the recorder back online.
+
+### Linux
+
+The Linux version uses `systemd` automatic restart behavior to recover the background recorder.
 
 ## Windows Security Warning
 
@@ -142,9 +187,11 @@ A digitally signed installer is planned for a future release.
 
 ## Current Version
 
-**v1.0.0**
+**Windows: v1.0.0**
 
-This is the first public DoorPulse release and the project is under active development.
+The Linux version is currently a development preview and does not yet have a packaged public release.
+
+DoorPulse is under active development.
 
 ## Support / Problems
 
@@ -156,7 +203,9 @@ When reporting a problem, do not post:
 - Ring two-factor authentication codes
 - Ring refresh tokens
 - FTP passwords
+- API keys
 - Private account information
+- Personal recordings
 
 ## Acknowledgements
 
